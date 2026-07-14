@@ -9,11 +9,11 @@ import {
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-navy-100 bg-white text-navy-100">
+    <footer className="md:mt-8 border-t border-navy-100 bg-white text-navy-100">
       <div className="container-x grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-5">
         <div className="md:col-span-2">
           <div className="text-lg font-bold text-black">
-            Oakhill
+            Elmo
             <span className="text-emerald-700"> Loans</span>
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-black">
@@ -28,13 +28,39 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-emerald-700">Company</h3>
           <ul className="mt-3 space-y-2 text-sm text-black">
             <li>
+              <Link
+                className="hover:text-emerald-700"
+                href="/lending-disclosures"
+              >
+                Lending Disclosures
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:text-emerald-700"
+                href="/business-loans/ontario"
+              >
+                Business Loans
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-emerald-700" href="/about">
+                About
+              </Link>
+            </li>
+            <li>
               <Link className="hover:text-emerald-700" href="/how-it-works">
                 How It Works
               </Link>
             </li>
             <li>
-              <Link className="hover:text-emerald-700" href="/rates-terms">
-                Rates & terms
+              <Link className="hover:text-emerald-700" href="/loan-uses">
+                Loan Uses
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-emerald-700" href="/eligibility">
+                Eligibility
               </Link>
             </li>
             <li>
@@ -88,7 +114,7 @@ export function Footer() {
                 {BRAND.email}
               </a>
             </li>
-            <li>Serving all 50 states</li>
+            <li> Monday – Friday: 9:00 AM – 6:00 PM EST</li>
           </ul>
         </div>
       </div>

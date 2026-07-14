@@ -5,7 +5,7 @@ import ContactForm from "./ContactForm";
 
 export default function ContactInfo() {
   return (
-    <section className="bg-slate-50 py-16">
+    <section className="bg-slate-50 py-12 md:py-16">
       <div className="container-x">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 lg:grid-cols-[380px_1fr]">

@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
 
-export function createMetadata(title: string, description: string): Metadata {
+const SITE_URL = "https://www.elmoloans.ca";
+
+export function createMetadata(
+  title: string,
+  description: string,
+  path = "/"
+): Metadata {
+  const url = new URL(path, SITE_URL).toString();
+
   return {
     title,
     description,
-    metadataBase: new URL("https://www.elmoloans.ca"),
+    metadataBase: new URL(SITE_URL),
 
     alternates: {
-      canonical: "/",
+      canonical: path,
     },
 
     openGraph: {
       title,
       description,
-      url: "https://www.elmoloans.ca",
+      url,
       siteName: "Elmo Loans",
       locale: "en_CA",
       type: "website",

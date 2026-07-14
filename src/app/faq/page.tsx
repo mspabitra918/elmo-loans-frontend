@@ -37,7 +37,7 @@ export default function FAQPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.18),transparent_35%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_40%)]" />
 
-        <div className="container-x relative py-20 text-center">
+        <div className="container-x relative py-12 md:py-20 text-center">
           <span className="inline-flex rounded-full border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300">
             Questions Answered
           </span>
@@ -55,7 +55,7 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 py-12 md:py-20">
         <div className="container-x">
           {/* <SectionHeading
             center

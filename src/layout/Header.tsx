@@ -81,7 +81,7 @@ export function Header() {
             ))}
             <Link
               href="/apply"
-              className="bg-emerald-600 mt-1 text-sm"
+              className="btn-primary ml-2 px-5 py-2 text-sm"
               onClick={() => setOpen(false)}
             >
               Apply Now

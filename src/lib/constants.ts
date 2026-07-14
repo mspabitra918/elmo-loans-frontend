@@ -5,7 +5,7 @@
 export const BRAND = {
   name: "Elmo Loans",
   legalName: "Elmo Loans, LLC",
-  domain: "northstarlend.com",
+  domain: "elmoloans.com",
   tagline: "Modern personal loans, funded in 24 hours.",
   phone: "(416) 555-0199",
   email: "hello@elmoloans.ca",

@@ -74,7 +74,7 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="mx-auto max-w-3xl rounded-3xl border border-emerald-200 bg-emerald-50 p-10 text-center">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100">
             <SendHorizonal className="h-9 w-9 text-emerald-600" />

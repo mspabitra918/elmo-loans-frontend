@@ -33,9 +33,9 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_85%_-10%,#d1fae5,transparent_60%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_45%_at_-5%_110%,#dbeafe,transparent_60%)]" />
 
-      <div className="container-x relative py-20 sm:py-20">
+      <div className="container-x relative py-12 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-sm font-medium text-emerald-700">
+          <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-[12px] md:text-sm font-medium text-emerald-700">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Canadian-owned • Ontario-based direct lender
           </span>

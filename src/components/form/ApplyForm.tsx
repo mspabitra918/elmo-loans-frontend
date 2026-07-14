@@ -194,7 +194,7 @@ export function ApplyForm() {
 
   return (
     <div className="grid gap-10 lg:grid-cols-[1fr_300px]">
-      <div className="rounded-2xl border border-navy-100 bg-white shadow-card p-6 sm:p-8">
+      <div className="rounded-2xl border border-navy-100 bg-white shadow-card p-6 sm:p-12 px-4">
         <Stepper step={step} />
 
         <div className="mt-8">
@@ -289,8 +289,7 @@ export function ApplyForm() {
         <div className="rounded-2xl border border-navy-100 bg-navy-50 p-5 text-sm text-navy-600">
           <p className="font-medium text-navy-800">🔒 Your data is protected</p>
           <p className="mt-1.5 leading-relaxed">
-            Submitted over TLS 1.3 and encrypted at rest with AES-256. We never
-            store your online-banking password.
+            Submitted over TLS 1.3 and encrypted at rest with AES-256.
           </p>
         </div>
         {/* <p className="px-1 text-xs text-navy-400">

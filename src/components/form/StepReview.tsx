@@ -15,7 +15,7 @@ function Row({
 }) {
   return (
     <div className="flex items-start justify-between gap-6 border-b border-slate-100 py-3 last:border-none">
-      <span className="text-sm text-slate-500">{label}</span>
+      <span className="text-[12px] md:text-sm text-slate-500">{label}</span>
 
       <span className="text-right font-medium text-slate-900">
         {value || "—"}
@@ -34,9 +34,11 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm text-sm md:text-[16px]">
       <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5">
-        <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+        <h3 className="text-sm md:text-lg font-semibold text-slate-900">
+          {title}
+        </h3>
 
         <button
           type="button"

@@ -3,7 +3,7 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function FinalCTA() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section className="bg-slate-50 py-12 md:py-24">
       <div className="container-x">
         <div className="relative overflow-hidden rounded-4xl bg-linear-to-br from-navy-900 to-primary px-6 py-16 shadow-lift sm:px-12 sm:py-20">
           {/* Ambient brand gradients */}

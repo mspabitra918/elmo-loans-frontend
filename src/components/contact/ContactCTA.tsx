@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function ContactCTA() {
   return (
-    <section className="py-20">
+    <section className="py-12 md:py-20">
       <div className="container-x">
         <div className="relative overflow-hidden rounded-3xl bg-navy-950 px-8 py-14 text-center shadow-xl md:px-16">
           {/* Background */}

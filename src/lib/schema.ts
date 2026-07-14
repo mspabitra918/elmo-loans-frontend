@@ -40,7 +40,7 @@ export function loanProductSchema() {
     "@context": "https://schema.org",
     "@type": ["FinancialProduct", "LoanOrCredit"],
     "@id": `${SITE_URL}/#personal-loan`,
-    name: "Northstar Unsecured Personal Loan",
+    name: "Elmo Unsecured Personal Loan",
     description: `Unsecured personal loans from ${formatRange()} at a fixed ${LOAN.apr}% APR, with no upfront fees and funding within ${LOAN.fundingHours} hours. All credit tiers considered.`,
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: "US",
