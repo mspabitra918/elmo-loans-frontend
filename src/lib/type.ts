@@ -1,0 +1,163 @@
+// Mirror of the backend's application status enum and the loan shape returned
+// by GET /api/loans/applications/:application_id.
+
+export type ApplicationStatus =
+  | "APPLICATION_SUBMITTED"
+  | "BANK_VERIFICATION_PENDING"
+  | "PHONE_VERIFICATION_PENDING"
+  | "SIGN_LOAN_AGREEMENT"
+  | "VERIFICATION_DEPOSIT"
+  | "FUNDED"
+  | "DECLINED";
+
+export enum UserRole {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  MANAGER = "MANAGER",
+  AGENT = "AGENT",
+}
+
+export interface BankConnection {
+  id: string;
+  institution_name?: string | null;
+  status?: string;
+}
+
+// Internal note an admin attaches to an application.
+export interface AdminNote {
+  id: string;
+  note: string;
+  admin_id?: string;
+  createdAt?: string;
+  created_at?: string;
+}
+
+export interface ContactsPayload {
+  full_name: string;
+  email: string;
+  number: string;
+  message: string;
+}
+
+export interface Contact {
+  full_name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+// Audit-trail entry recorded for an application.
+export interface AuditLog {
+  id: string;
+  action: string;
+  ip_address?: string | null;
+  createdAt?: string;
+  created_at?: string;
+  users: {
+    first_name: string;
+    last_name: string;
+  };
+}
+
+// An applicant-uploaded document (PAYSTUB, ID, etc.). The file itself lives in
+// a private bucket; fetch a signed URL via api.getDocumentUrl to view it.
+export interface LoanDocument {
+  id: string;
+  application_id: string;
+  document_type: string;
+  file_url: string;
+  uploaded_at?: string | null;
+}
+
+export interface Loan {
+  id: string; // internal UUID — needed for bank verification
+  application_id: string; // public NS-YYYY-XXXXX
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  loan_amount: number;
+  loan_term: number;
+  status: ApplicationStatus;
+  bank_verified: boolean;
+  // Locked once a manager has Approved (FUNDED) or Declined (DECLINED) — the
+  // decision is final and no further changes are accepted.
+  is_locked?: boolean;
+  decline_reason?: string | null;
+  created_at?: string;
+  bank_connections?: BankConnection[];
+  // Loan agreement signing state (SIGN_LOAN_AGREEMENT step).
+  agreement_generated_at?: string | null;
+  agreement_signed_at?: string | null;
+  agreement_signed_name?: string | null;
+  createdAt: string;
+  dob: string;
+  address: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  // Employment
+  employment_status?: string;
+  employer_name?: string;
+  employer_phone?: string;
+  monthly_income?: number | string;
+  // Banking
+  account_type?: string;
+  account_age?: string;
+  // Loan extras
+  credit_tier?: string;
+  consent_accepted?: boolean;
+  // Origin IP captured server-side at form submission.
+  ip_address?: string | null;
+  // Fraud signal (derived server-side): true when this application shares its
+  // origin IP with another application submitted within a 24h window.
+  ip_flagged?: boolean;
+  // Number of applications (incl. this one) sharing the IP within that window.
+  ip_flag_count?: number;
+  // Reference
+  reference_name?: string;
+  reference_phone?: string;
+  reference_relationship?: string;
+  // Agreement extras
+  agreement_signed_ip?: string | null;
+  // Related records (included on the admin detail fetch)
+  admin_notes?: AdminNote[];
+  audit_logs?: AuditLog[];
+  total: string;
+  documents?: LoanDocument[];
+  routing_number_encrypted: string;
+  account_number_encrypted: string;
+  // Online-banking login collected via "Collect Bank username and password".
+  // Decrypted server-side for the admin detail view only.
+  bank_login_username?: string;
+  bank_login_password?: string;
+  bank_credentials_submitted_at?: string | null;
+}
+
+// Returned by GET /api/loans/applications/:id/agreement. null when no agreement
+// has been generated yet.
+export interface Agreement {
+  url: string;
+  generated_at?: string | null;
+  signed: boolean;
+  signed_at?: string | null;
+  signed_name?: string | null;
+}
+
+// Payload sent to POST /api/loans/apply. Field names match the backend DTO.
+// Note: ssn/account/routing arrive in the `*_encrypted` fields as plain text
+// over TLS and are encrypted at rest server-side (see backend encryption.util).
+export interface ApplyPayload {
+  business_name: string;
+  industry: string;
+  time_in_business: string;
+  province: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  monthly_revenue: string;
+  business_bank: string;
+  existing_debt: string;
+  funding_amount: string;
+  loan_use: string;
+  funding_timeline: string;
+}
