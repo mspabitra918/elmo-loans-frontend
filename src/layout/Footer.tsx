@@ -76,22 +76,22 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-emerald-700">Legal</h3>
           <ul className="mt-3 space-y-2 text-sm text-black">
             <li>
-              <Link className="hover:text-emerald-700" href="/privacy-policy">
+              <Link className="hover:text-emerald-700" href="/#">
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link className="hover:text-emerald-700" href="/terms-of-service">
+              <Link className="hover:text-emerald-700" href="/#">
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link className="hover:text-emerald-700" href="/accessibility">
+              <Link className="hover:text-emerald-700" href="/#">
                 Accessibility Statement
               </Link>
             </li>
             <li>
-              <Link className="hover:text-emerald-700" href="/cookie-policy">
+              <Link className="hover:text-emerald-700" href="/#">
                 Cookie Policy
               </Link>
             </li>
