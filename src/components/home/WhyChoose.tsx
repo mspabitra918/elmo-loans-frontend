@@ -46,7 +46,7 @@ export default function WhyChoose() {
 
           <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 lg:text-5xl">
             Built for Business Owners
-            <span className="block bg-gradient-to-r from-emerald-600 to-primary bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-emerald-600 to-primary bg-clip-text text-transparent md:pb-2">
               Who Need Funding Now
             </span>
           </h2>

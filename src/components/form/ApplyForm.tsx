@@ -22,6 +22,7 @@ import { Check } from "./ui/Check";
 import { StepReview } from "./StepReview";
 import { MoveLeft, MoveRight } from "lucide-react";
 import { toast } from "sonner";
+import { ConfirmationScreen } from "./ConfirmationScreen";
 
 export type Values = Record<string, string>;
 
@@ -43,8 +44,11 @@ export const initialValues: Values = {
   consent_contact: "false",
   consent_terms: "false",
 };
+interface ApplyFormProps {
+  onSuccess: (firstName: string) => void;
+}
 
-export function ApplyForm() {
+export function ApplyForm({ onSuccess }: ApplyFormProps) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [values, setValues] = useState<Values>(initialValues);
@@ -53,7 +57,6 @@ export function ApplyForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-
   // const setField = (name: string, value: string) => {
   //   setValues((prev) => ({ ...prev, [name]: value }));
   //   if (errors[name]) setErrors((e) => ({ ...e, [name]: "" }));
@@ -86,20 +89,8 @@ export function ApplyForm() {
   };
 
   function validateStep(current: number): Record<string, string> {
-    const employed = values.employment_status === "Employed";
     const maps: Record<number, Record<string, v.Validator | undefined>> = {
       0: {
-        // loan_amount: v.loanAmount,
-        // first_name: v.required("First name"),
-        // full_name: v.required("Full name"),
-        // dob: v.dob,
-        // ssn: v.ssn,
-        // email: v.email,
-        // phone: v.phone,
-        // address: v.required("Street address"),
-        // city: v.required("City"),
-        // state: v.required("State"),
-        // zip_code: v.zip,
         business_name: v.required(),
         industry: v.required(),
         time_in_business: v.required(),
@@ -119,6 +110,9 @@ export function ApplyForm() {
         full_name: v.required(),
         email: v.required(),
         phone: v.required(),
+        consent_credit: v.accepted("Credit consent"),
+        consent_contact: v.accepted("Contact consent"),
+        consent_terms: v.accepted("Terms and Conditions"),
       },
       4: {},
     };
@@ -144,17 +138,17 @@ export function ApplyForm() {
   }
 
   async function submit() {
-    const consentErrors: Record<string, string> = {};
-    if (!consentCredit)
-      consentErrors.consent_credit = "Required to process your application.";
-    if (!consentTcpa) consentErrors.consent_tcpa = "Required to continue.";
-    if (Object.keys(consentErrors).length) {
-      setErrors(consentErrors);
-      return;
-    }
+    // const consentErrors: Record<string, string> = {};
+    // if (!consentCredit)
+    //   consentErrors.consent_credit = "Required to process your application.";
+    // if (!consentTcpa) consentErrors.consent_tcpa = "Required to continue.";
+    // if (Object.keys(consentErrors).length) {
+    //   setErrors(consentErrors);
+    //   return;
+    // }
 
-    setSubmitting(true);
-    setSubmitError(null);
+    // setSubmitting(true);
+    // setSubmitError(null);
 
     const payload: ApplyPayload = {
       business_name: values.business_name.trim(),
@@ -171,6 +165,8 @@ export function ApplyForm() {
       loan_use: values.loan_use.trim(),
       funding_timeline: values.funding_timeline.trim(),
     };
+    console.log(payload);
+    onSuccess(values.full_name.split(" ")[0]);
 
     try {
       //   const loan = await api.apply(payload);

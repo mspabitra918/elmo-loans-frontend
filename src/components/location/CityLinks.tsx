@@ -45,8 +45,8 @@ export default function CityLinks({
             {cities.map((city) => (
               <Link
                 key={city.slug}
-                // href={`/business-loans/${province}/${city.slug}`}
-                href="#"
+                href={`/business-loans/${province}/${city.slug}`}
+                // href="#"
                 className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-5 py-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary hover:shadow-lg"
               >
                 <div>

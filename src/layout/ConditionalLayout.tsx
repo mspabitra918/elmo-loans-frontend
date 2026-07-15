@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import CookieConsent from "../components/legal/CookieConsent";
 
 export default function ConditionalLayout({
   children,
@@ -23,6 +24,7 @@ export default function ConditionalLayout({
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      <CookieConsent />
     </>
   );
 }

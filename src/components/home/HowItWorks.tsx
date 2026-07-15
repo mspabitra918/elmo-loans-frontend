@@ -37,7 +37,7 @@ export default function HowItWorks() {
 
           <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 lg:text-5xl ">
             Three Steps
-            <span className="block bg-gradient-to-r from-emerald-600 to-primary bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-emerald-600 to-primary bg-clip-text text-transparent md:pb-2">
               to Funding
             </span>
           </h2>

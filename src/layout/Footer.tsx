@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CookieSettingsLink from "@/src/components/legal/CookieSettingsLink";
 import {
   BRAND,
   LOAN,
@@ -80,7 +81,7 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-emerald-700" href="/terms">
+              <Link className="hover:text-emerald-700" href="/terms-of-service">
                 Terms of Service
               </Link>
             </li>
@@ -89,6 +90,14 @@ export function Footer() {
                 Accessibility Statement
               </Link>
             </li>
+            <li>
+              <Link className="hover:text-emerald-700" href="/cookie-policy">
+                Cookie Policy
+              </Link>
+            </li>
+            {/* <li>
+              <CookieSettingsLink className="hover:text-emerald-700" />
+            </li> */}
           </ul>
         </div>
 

@@ -128,13 +128,15 @@ export function StepContactIdentity({ values, errors, set }: StepProps) {
               read and agree to the{" "}
               <Link
                 href="/privacy-policy"
+                target="_blank"
                 className="font-medium text-emerald-600 hover:underline"
               >
                 Privacy Policy
               </Link>{" "}
               and{" "}
               <Link
-                href="/terms"
+                href="/terms-of-service"
+                target="_blank"
                 className="font-medium text-emerald-600 hover:underline"
               >
                 Terms of Service
