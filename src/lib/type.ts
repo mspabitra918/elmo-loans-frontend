@@ -11,9 +11,8 @@ export type ApplicationStatus =
   | "DECLINED";
 
 export enum UserRole {
-  SUPER_ADMIN = "SUPER_ADMIN",
-  MANAGER = "MANAGER",
-  AGENT = "AGENT",
+  ADMIN = "admin",
+  USER = "user",
 }
 
 export interface BankConnection {

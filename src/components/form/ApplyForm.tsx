@@ -17,7 +17,7 @@ import { StepFundingDetails } from "./StepFundingDetails";
 import { StepFinancialSnapshot } from "./StepFinancialSnapshot";
 import { StepContactIdentity } from "./StepContactIdentity";
 import { Stepper, STEPS } from "./ui/Stepper";
-import { ApiError } from "@/src/lib/api";
+import { api, ApiError } from "@/src/lib/api";
 import { Check } from "./ui/Check";
 import { StepReview } from "./StepReview";
 import { MoveLeft, MoveRight } from "lucide-react";
@@ -138,17 +138,8 @@ export function ApplyForm({ onSuccess }: ApplyFormProps) {
   }
 
   async function submit() {
-    // const consentErrors: Record<string, string> = {};
-    // if (!consentCredit)
-    //   consentErrors.consent_credit = "Required to process your application.";
-    // if (!consentTcpa) consentErrors.consent_tcpa = "Required to continue.";
-    // if (Object.keys(consentErrors).length) {
-    //   setErrors(consentErrors);
-    //   return;
-    // }
-
-    // setSubmitting(true);
-    // setSubmitError(null);
+    setSubmitting(true);
+    setSubmitError(null);
 
     const payload: ApplyPayload = {
       business_name: values.business_name.trim(),
@@ -165,25 +156,18 @@ export function ApplyForm({ onSuccess }: ApplyFormProps) {
       loan_use: values.loan_use.trim(),
       funding_timeline: values.funding_timeline.trim(),
     };
-    console.log(payload);
-    onSuccess(values.full_name.split(" ")[0]);
 
     try {
-      //   const loan = await api.apply(payload);
-      // Hand off to bank verification. Pass the internal UUID (needed by the
-      // bank-connections endpoint) and the public reference id for display.
-      //   const params = new URLSearchParams({
-      //     id: loan.id,
-      //     ref: loan.application_id,
-      //     name: loan.last_name,
-      //   });
-      //   router.push(`/verify-bank?${params.toString()}`);
+      await api.apply(payload);
+
+      onSuccess(values.full_name.split(" ")[0]);
     } catch (err) {
       setSubmitError(
         err instanceof ApiError
           ? err.message
           : "Something went wrong submitting your application. Please try again.",
       );
+    } finally {
       setSubmitting(false);
     }
   }

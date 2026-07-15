@@ -5,13 +5,14 @@ import { Loader2, SendHorizonal } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { formattedNumber } from "../form/StepContactIdentity";
+import { api } from "@/src/lib/api";
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const [form, setForm] = useState({
-    fullName: "",
+    full_name: "",
     email: "",
     phone: "",
     message: "",
@@ -27,7 +28,7 @@ export default function ContactForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!form.fullName.trim()) {
+    if (!form.full_name.trim()) {
       toast.error("Please enter your full name.");
       return;
     }
@@ -50,22 +51,25 @@ export default function ContactForm() {
     try {
       setLoading(true);
 
-      // Example API call
-      // await api.contact(form);
-
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await api.createContacts({
+        full_name: form.full_name,
+        email: form.email,
+        number: form.phone,
+        message: form.message,
+      });
 
       toast.success("Your message has been sent successfully.");
 
       setSubmitted(true);
 
       setForm({
-        fullName: "",
+        full_name: "",
         email: "",
         phone: "",
         message: "",
       });
-    } catch {
+    } catch (error) {
+      console.error(error);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -122,8 +126,8 @@ export default function ContactForm() {
 
             <input
               type="text"
-              value={form.fullName}
-              onChange={(e) => handleChange("fullName", e.target.value)}
+              value={form.full_name}
+              onChange={(e) => handleChange("full_name", e.target.value)}
               placeholder="John Smith"
               className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-primary"
             />
