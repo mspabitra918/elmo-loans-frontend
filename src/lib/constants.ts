@@ -225,7 +225,8 @@ is reviewed and funded by us — it isn't shopped around to third-party lenders.
 export function formatDateTime(value?: string) {
   if (!value) return "—";
 
-  return new Date(value).toLocaleString("en-GB", {
+  return new Date(value).toLocaleString("en-CA", {
+    timeZone: "America/Toronto",
     day: "2-digit",
     month: "short",
     year: "numeric",
