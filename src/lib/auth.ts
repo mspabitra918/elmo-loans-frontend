@@ -4,8 +4,8 @@
 
 import { UserRole } from "./type";
 
-export const TOKEN_KEY = "northstar_lending_token";
-export const USER_KEY = "northstar_lending_user";
+export const TOKEN_KEY = "elmo_loans_token";
+export const USER_KEY = "elmo_loans_user";
 
 export type AdminUser = {
   id: string;

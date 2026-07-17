@@ -2,7 +2,8 @@ import { getToken } from "./auth";
 import { ApplyPayload, ContactsPayload, Loan } from "./type";
 
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  "https://elmo-loans-backend.vercel.app";
 
 export class ApiError extends Error {
   status: number;
