@@ -24,10 +24,11 @@ interface AdminApplication {
   email: string;
   phone: string;
   status: string;
-  ip_address: string;
-  createdAt: string;
-  updatedAt: string;
+  ip_address?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
+
 function formatDate(value?: string) {
   if (!value) return "—";
   const date = new Date(value);
@@ -184,7 +185,7 @@ export default function ApplicationDetailsPage() {
 
           <Info label="Application ID" value={application.application_id} />
           <Info label="UUID" value={application.id} />
-          <Info label="IP Address" value={application.ip_address} />
+          <Info label="IP Address" value={application.ip_address || "-"} />
           <Info label="Created" value={formatDate(application.createdAt)} />
           <Info label="Updated" value={formatDate(application.updatedAt)} />
         </div>
