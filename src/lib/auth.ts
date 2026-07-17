@@ -7,12 +7,20 @@ import { UserRole } from "./type";
 export const TOKEN_KEY = "elmo_loans_token";
 export const USER_KEY = "elmo_loans_user";
 
+// Shape returned by POST /auth/login. The backend stores names split across
+// two columns, so callers that want a display name should use adminDisplayName.
 export type AdminUser = {
   id: string;
-  full_name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   role: UserRole;
 };
+
+export function adminDisplayName(user: AdminUser | null): string {
+  if (!user) return "";
+  return [user.first_name, user.last_name].filter(Boolean).join(" ").trim();
+}
 
 export function getToken(): string | null {
   if (typeof window === "undefined") return null;

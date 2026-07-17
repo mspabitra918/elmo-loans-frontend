@@ -44,6 +44,46 @@ export interface Contact {
   message: string;
 }
 
+// A contact-form submission as the admin API returns it. This mirrors the
+// `messages` table, which stores the phone as `number` — not `phone` like the
+// Contact type above.
+export interface AdminMessage {
+  id: string;
+  full_name: string;
+  email: string;
+  number: string;
+  message: string;
+  created_at: string;
+}
+
+// Envelope shared by the paginated admin list endpoints.
+export interface Paginated<T> {
+  items: T[];
+  total: number;
+  page: number;
+  limit: number;
+}
+
+export interface AdminStats {
+  applications: number;
+  messages: number;
+}
+
+// A loan application as the admin API returns it: the submitted form fields
+// (ApplyPayload) plus everything the server attaches on write.
+//
+// Note this is intentionally separate from `Loan` above — that type describes an
+// older personal-loan schema (first_name/loan_amount/dob/zip_code) which the
+// `applications` table no longer has.
+export interface AdminApplication extends ApplyPayload {
+  id: string;
+  application_id: string;
+  status: ApplicationStatus;
+  ip_address?: string | null;
+  createdAt: string;
+  updatedAt?: string;
+}
+
 // Audit-trail entry recorded for an application.
 export interface AuditLog {
   id: string;
