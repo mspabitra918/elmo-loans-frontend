@@ -6,20 +6,21 @@ import { api, DEFAULT_PAGE_SIZE } from "@/src/lib/api";
 import type { AdminMessage } from "@/src/lib/type";
 import { useDebounced } from "@/src/lib/useDebounced";
 import { Pagination, SearchInput } from "@/src/components/admin/DataToolbar";
+import { formatDateTime } from "@/src/lib/constants";
 
-function formatDateTime(value?: string) {
-  if (!value) return "—";
-  const date = new Date(value);
-  return Number.isNaN(date.getTime())
-    ? "—"
-    : date.toLocaleString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-      });
-}
+// function formatDateTime(value?: string) {
+//   if (!value) return "—";
+//   const date = new Date(value);
+//   return Number.isNaN(date.getTime())
+//     ? "—"
+//     : date.toLocaleString(undefined, {
+//         year: "numeric",
+//         month: "short",
+//         day: "numeric",
+//         hour: "numeric",
+//         minute: "2-digit",
+//       });
+// }
 
 export default function AdminMessagesPage() {
   const [query, setQuery] = useState("");
@@ -49,7 +50,9 @@ export default function AdminMessagesPage() {
       })
       .catch((err: unknown) => {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : "Could not load messages");
+        setError(
+          err instanceof Error ? err.message : "Could not load messages",
+        );
         setRows([]);
         setTotal(0);
       })

@@ -221,3 +221,16 @@ see brief §5.2/§10]. Coverage is expanding — check our locations pages for t
 is reviewed and funded by us — it isn't shopped around to third-party lenders.`,
   },
 ] as const;
+
+export function formatDateTime(value?: string) {
+  if (!value) return "—";
+
+  return new Date(value).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+}
